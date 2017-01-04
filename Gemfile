@@ -61,7 +61,7 @@ group :development do
   gem "binding_of_caller"
   gem "bullet"
   gem 'capistrano',         require: false
-  gem 'capistrano-rvm',     require: false
+  gem 'capistrano-rbenv',     require: false
   gem 'capistrano-rails',   require: false
   gem 'capistrano-bundler', require: false
   gem 'capistrano3-puma',   require: false
