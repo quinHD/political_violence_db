@@ -1,6 +1,8 @@
 set :branch, "master"
 set :rails_env, "production"
 
+execute :rake, "rake ts:index RAILS_ENV=production"
+
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.
