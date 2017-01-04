@@ -1,0 +1,10 @@
+= f.simple_fields_for :place, class: "form-item"  do |ff|
+  = ff.input :name, placeholder: true, input_html: { class: "form-item" }
+  = ff.input :country, placeholder: true, only: ["UY", "IT", "ES"],  locale: 'es'
+  = ff.input :province, placeholder: true, input_html: { class: "form-item" }
+  = ff.input :city, placeholder: true, input_html: { class: "form-item" }
+  = ff.label :type_of_area, class: "form-label form-item"
+  = ff.collection_radio_buttons :type_of_area, [["Rural", "Rural"] ,["No Rural", "No rural"]], :first, :last, checked: "Rural", input_html: { class: "form-item" }
+  = ff.input :description, placeholder: true, input_html: { class: "form-item", rows: 8}
+
+

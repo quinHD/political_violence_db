@@ -1,0 +1,27 @@
+<%= javascript_tag do %>
+  var organizations = new Bloodhound({
+    local: <%= collection.map { |org| {id: org.id, organization: org.name} }.to_json.html_safe %>,
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('organization'),
+    queryTokenizer: Bloodhound.tokenizers.whitespace
+  });
+
+  // initialize the bloodhound suggestion engine
+  organizations.initialize();
+
+  $('.<%= klass %>').typeahead(
+    {
+      hint: true,
+      highlight: true,
+      minLength: 1
+    }, 
+    {
+      displayKey: 'organization',
+      source: organizations.ttAdapter()
+    }
+  );
+
+  $('.<%= klass %>').bind('typeahead:select', function(ev, suggestion) {
+    $(this).attr("data-selected_id", suggestion.id)
+  });
+
+<% end %>

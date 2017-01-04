@@ -1,0 +1,22 @@
+.breadcrumbs
+  = link_to "Administración", admin_root_path
+  span.separator= fa_icon "circle"
+  = link_to "Acciones", admin_acts_path
+  span.separator= fa_icon "circle"
+  = "Organizaciones"
+section.action-container
+  .tile-container
+    .section-header
+      h2 = "Listado de Organizaciones"
+    ul.hierarchy_list
+      - @organizations.each_with_index do |organization, i|
+        li 
+          h4= link_to(organization.name, "#collapse#{i}", data: {toggle: :collapse})
+        ul.hierarchy_list.collapse id="collapse#{i}"
+          - organization.children.each_with_index do |group, i|
+            li 
+              h5= group.name
+            ul.hierarchy_list
+              - group.children.each_with_index do |subgroup, i|
+                li
+                  h6= subgroup.name

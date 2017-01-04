@@ -1,0 +1,34 @@
+.breadcrumbs
+  = link_to "Administración", admin_root_path
+  span.separator= fa_icon "circle"
+  = link_to "Acciones", admin_acts_path
+  span.separator= fa_icon "circle"
+  = "Listado"
+section.action-container
+  .tile-container
+    .section-header
+      - if params[:q]
+        h2 = "Listado de acciones filtradas " 
+      - else
+        h2 = "Listado de acciones"
+    table.table.table-striped[summary="Listado de todas las acciones"]
+      thead
+        tr
+          th Id
+          th.col-md-6 Nombre
+          th.col-md-1 Fecha Inicio
+          th.col-md-2 Organizacion
+          th.col-md-2 Tipo
+          th.col-md-1 Creador
+
+      tbody
+        - @acts.each_with_index do |act, i|
+          tr
+            td.index = i+1
+            td.justified = link_to(act.name, admin_act_path(act), class: "name")
+            td.start-date
+              input type="hidden" val="#{act.start_date.to_time.to_i + 100000000000}" class= "start-date"
+              = act.start_date.strftime("%d/%b/%Y")
+            td.organization.filter-cell = act.act_organizations.map {|ao| "<span class='multi-organization'> #{ao.name} </span>"}.to_sentence(last_word_connector: " y ", two_words_connector: " y " ).html_safe
+            td.act-type.filter-cell = act.act_types.map {|at| "<span class='multi-act-type'> #{at.name}  </span>"}.to_sentence(last_word_connector: " y ", two_words_connector: " y " ).html_safe
+            td =act.creator.name if act.creator.present?

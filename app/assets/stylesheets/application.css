@@ -1,0 +1,84 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require twitter-bootstrap-static/bootstrap
+ *= require_self
+ *= require font-awesome
+ *= require common
+ *= require header
+ *= require side_bar
+ *= require acts
+ *= require tables
+ *= require forms
+ *= require lists
+ *= require flash_messages
+ *= require typeahead
+ */
+
+.error {
+  padding: 2px 4px;
+  background-color: #f9afad;
+  border: solid 1px #c13828;
+}
+
+.breadcrumbs {
+  background-color: #fff;
+  color: #888;
+  height: 4rem;
+  padding: 1rem 2rem;
+  border-bottom: solid 1px #e7ecf1;
+}
+
+.breadcrumbs a {
+  color: #888;
+}
+
+a {
+  text-decoration: none;
+}
+
+.rounded-icon {
+  padding: 1rem;
+  margin-left: .5rem;
+  float: right;
+  position: relative;
+  border-radius: 50%;
+  right: 1rem;
+  border: solid 1px #ccc;
+  color: #666;
+  z-index: 10;
+}
+
+.rounded-icon:hover {
+  color: #fff;
+  background-color: #ccc;
+}
+
+.quick-search {
+  width: 30rem;
+  float: right;
+  position: relative;
+  border: solid 1px #ccc;
+  color: #666;
+  border-radius: 50px;
+  height: 36px;
+  margin-right: -30px;
+  padding-left: 10px;
+}
+
+.display-none {
+  display: none;
+}
+
+.hide-border {
+  border: solid 1px transparent;
+}

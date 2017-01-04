@@ -1,0 +1,40 @@
+.section-header {
+  color: #888;
+  border-bottom: solid 1px #eaedf3;
+  overflow: hidden;
+  position:relative;
+  margin-bottom: 1.5rem;
+}
+
+.section-header h2 {
+  float: left;
+}
+
+.action-container {
+  min-height: 90vh;
+  padding: 1.5rem;
+  background-color: #f7f7f7;
+}
+
+.action-container .show {
+  border: solid 1px;
+  padding: 2rem;
+  margin-bottom: 1rem;
+}
+
+.action-container .show label {
+  padding-left: 3rem
+}
+
+.tile-container {
+  min-height: 85vh;
+  padding: 2rem 2rem 2rem 2rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #E6E9ED;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.adaptable {
+  min-height: 0;
+}

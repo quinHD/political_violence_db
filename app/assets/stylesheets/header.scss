@@ -1,0 +1,63 @@
+header {
+  height: 5rem; 
+  background-color: #2b3643;
+}
+
+header .menu-icon {
+  float: left;
+  height: 3rem;
+  width: 2rem;
+  font-size: 2rem;
+  margin: 1rem 1.5rem 1rem 1.5rem;
+  color: #fff;
+}
+
+header .logo-container {
+  height: 3rem;
+  line-height: 3rem;
+  font-size: 2rem;
+  margin: 1rem 1rem;
+  color: #fff;
+  float: left;
+}
+
+header .logo-container a {
+  color: #fff;
+  text-decoration: none;
+}
+
+header .logo-container .light-logo {
+  color: #bbb;
+}
+
+header .logo-container .strong-logo {
+  color: red;
+}
+
+header .user-logged {
+  margin: 1rem 2rem;
+  height: 3rem;
+  float: right;
+  font-size: 1.3rem;
+  font-weight: 300;
+}
+
+header .user-logged a{
+  color: #c6cfda;
+}
+
+header .user-logged .header-icon {
+  margin-left: 3rem;
+
+  font-size: 1.7rem;
+  color: #79869a;
+}
+
+header .user-logged img.rounded-img {
+  height: 3rem;
+  width: 3rem;
+  margin-right: .5rem;
+  border-radius: 50%;
+  border: solid .2rem rgba(255,255,255,0.25); 
+}
+

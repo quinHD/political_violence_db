@@ -1,0 +1,16 @@
+.breadcrumbs
+  = link_to "Administración", admin_root_path
+  span.separator= fa_icon "circle"
+  = link_to "Acciones", admin_acts_path
+  span.separator= fa_icon "circle"
+  = "Tipos de acción"
+section.action-container
+  .tile-container
+    .section-header
+      h2 = "Listado de tipos de acción"
+    ul.tile-list
+      - @act_types.each do |organization|
+        li
+          = organization.name
+          button.close type="button" aria-label="Close"
+            span aria-hidden="true" = "&times;".html_safe

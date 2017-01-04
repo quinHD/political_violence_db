@@ -1,0 +1,85 @@
+= act_breadcrumbs("Listado")
+section#acts-list.action-container
+  .tile-container
+    .section-header
+      - if params[:q]
+        h2 = "Listado de acciones filtradas " 
+      - else
+        h2 = "Listado de acciones"
+      = fa_icon "download", class: "rounded-icon"
+      = fa_icon "search", class: "rounded-icon search"
+      input.quick-search.display-none type="text"
+    table.table.table-striped[summary="Listado de todas las acciones"]
+      thead
+        tr
+          th.sort data-sort="index" #
+          th.sort.col-md-5 data-sort="name" Nombre
+          th.sort.col-md-1 data-sort="start-date" Fecha Inicio
+          th.sort.col-md-2 data-sort="organization" Organizacion
+          th.sort.col-md-2 data-sort="act-type" Tipo
+          th.sort.col-md-2 data-sort="target" Objetivo
+      tbody.list
+        - @acts.each_with_index do |act, i|
+          tr
+            td.index = i+1
+            td.justified = link_to(act.name, act_path(act), class: "name")
+            td.start-date
+              input type="hidden" val="#{act.start_date.to_time.to_i + 100000000000}" class= "start-date"
+              = act.start_date.strftime("%d/%b/%Y")
+            td.organization.filter-cell = act.act_organizations.map {|ao| "<span class='multi-organization'> #{ao.name} </span>"}.to_sentence(last_word_connector: " y ", two_words_connector: " y " ).html_safe
+            td.act-type.filter-cell = act.act_types.map {|at| "<span class='multi-act-type'> #{at.name}  </span>"}.to_sentence(last_word_connector: " y ", two_words_connector: " y " ).html_safe
+            td.target.filter-cell = act.act_targets.map {|at| "<span class='multi-target'> #{at.name} </span>"}.to_sentence(last_word_connector: " y ", two_words_connector: " y " ).html_safe
+
+javascript:
+  $(".rounded-icon.search").on("click", function () {
+    $(".quick-search").animate({width: "toggle"});
+    $(".quick-search").focus();
+    $(".rounded-icon.search").toggleClass("hide-border");
+  })
+
+  $(".quick-search").on("keyup", function () {
+    var query = $(this).val();
+    userList.search(query, ['index', 'name', 'act-type', 'organization', 'target']);
+    addFilterText(query);
+    if(query.length == 0){
+      $(".filter-text").remove();
+    }
+  });
+
+  $(".act-type").on("click", ".multi-act-type", function () {
+    var query = $(this).html();
+    userList.search(query, ['act-type']);
+    addFilterText(query);
+  });
+
+  $(".target").on("click", ".multi-target", function () {
+    var query = $(this).html();
+    userList.search(query, ['target']);
+    addFilterText(query);
+  });
+
+  $(".organization").on("click", ".multi-organization", function () {
+    var query = $(this).html();
+    userList.search(query, ['organization']);
+    addFilterText(query);
+  });
+
+  function addFilterText (filter) {
+    $(".filter-text").remove();
+    $(".section-header h2").after(
+      "<span class='filter-text'>" +
+        "<h2> | </h2>" +
+        "<span>" + filter +
+          "<a class='remove-filter'><i class='fa fa-times'></i></a>" +
+        "</span>" +
+      "</span>");
+  }
+
+  $(".section-header").on("click", ".remove-filter", function () {
+    $(".filter-text").remove();
+    $(".quick-search").val("");
+    userList.search();
+  });
+
+  var options = { valueNames: ['index', 'name', 'start-date', 'act-type', 'organization', 'target'] };
+  var userList = new List('acts-list', options);

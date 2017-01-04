@@ -1,0 +1,12 @@
+article.show.authorship
+  h3 = "Autoría"
+  table.organizations.table.table-striped
+    tr
+      th ="Organización"
+      th ="Grupo"
+      th ="Subgrupo"
+    - @act.act_organizations.each do |act_organization|
+      tr
+        td = act_organization.path.find_by_label(ActOrganization::ORGANIZATION).try(:name)
+        td = act_organization.path.find_by_label(ActOrganization::GROUP).try(:name)
+        td = act_organization.path.find_by_label(ActOrganization::SUBGROUP).try(:name)

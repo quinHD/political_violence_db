@@ -1,0 +1,44 @@
+.table {
+  border: 1px solid rgba(221, 221, 221, 0.78);
+}
+
+.table th {
+  background-color: #364150;
+  color: #fff;
+}
+
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+  vertical-align: middle;
+}
+
+.table-striped>tbody>tr:nth-child(even) {
+  background-color: #fff;
+}
+
+th.sort:hover {
+  cursor: pointer;
+  color: #e7e7e7;
+}
+
+tr:hover td {
+  background-color: #E3EFF2;
+}
+
+tr:hover td span:hover{
+  color: #777;
+  cursor: pointer;
+}
+
+.table a {
+  text-decoration: none;
+}
+
+.filter-cell {
+  cursor: default;
+}
+
+table.organizations, table.targets {
+  margin-top: 2rem;
+  margin-left: 20%;
+  width: 80%;
+}

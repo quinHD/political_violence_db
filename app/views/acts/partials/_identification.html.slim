@@ -1,0 +1,13 @@
+article.show.identification
+  h1 = @act.name
+  label = "Fecha de inicio"
+  p = @act.start_date.strftime("%d de %B de %Y")
+  - if @act.end_date
+    label = "Fecha de fin"
+    p = @act.end_date.strftime("%d de %B de %Y")
+  - if @act.description
+    label = "Descripción"
+    p = @act.description
+  - if @act.note
+    label = "Anotaciones"
+    p = @act.note

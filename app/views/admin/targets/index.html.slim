@@ -1,0 +1,45 @@
+.breadcrumbs
+  = link_to "Administración", admin_root_path
+  span.separator= fa_icon "circle"
+  = link_to "Acciones", admin_acts_path
+  span.separator= fa_icon "circle"
+  = "Objetivos"
+section.action-container.strech-container
+  .tile-container
+    .section-header
+      h2 = "Listado de Objetivos"
+      = fa_icon "edit", class: "rounded-icon", id: "read-mode-btn" 
+    ul.hierarchy_list.level-1
+      - @targets.each_with_index do |target, i|
+        li 
+          h4
+            = link_to(target.name, "#collapse#{i}", data: {toggle: :collapse})
+            .commands.read-mode = link_to fa_icon("trash"), admin_target_path(target), method: :delete
+        ul.hierarchy_list.level-2.collapse id="collapse#{i}"
+          - target.children.each_with_index do |category, j|
+            li 
+              h5
+                = link_to(category.name, "#collapse#{i}#{j}", data: {toggle: :collapse})
+                .commands.read-mode = link_to fa_icon("trash"), admin_target_path(target), method: :delete
+            ul.hierarchy_list.level-3.collapse id="collapse#{i}#{j}"
+              - category.children.each_with_index do |subcategory, k|
+                li
+                  h6
+                    = subcategory.name
+                    .commands.read-mode = link_to fa_icon("trash"), admin_target_path(target), method: :delete
+              li.read-mode = render("new_target", parent: category, current_list: "level-3", id_num: [])
+          li.read-mode = render("new_target", parent: target, current_list: "level-2", id_num: [@targets.count, target.children.count])
+      li.read-mode = render("new_target", parent: nil, current_list: "level-1", id_num: [@targets.count])
+
+javascript:
+  $(".target-addition").on("click", function () {
+    $("#target_parent").val($(this).data("id"));
+  })
+
+  $("#add_target").submit(function() {
+    $("#myModal").modal("hide");
+  });
+
+  $("#read-mode-btn").on("click", function () {
+    $(".read-mode").toggle();
+  });

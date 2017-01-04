@@ -1,0 +1,22 @@
+= act_breadcrumbs("Nueva")
+section.action-container.strech-container
+  .tile-container
+    .section-header
+      h2 = "Nueva acción"
+    .action-form
+      ul.nav.nav-pills.nav-justified
+        li.active
+          a data-toggle="pill" href="#identification-pill" Identificación
+        li
+          a data-toggle="pill" href="#localization-pill" Localización
+        li
+          a data-toggle="pill" href="#authorship-pill" Autoría
+        li
+          a data-toggle="pill" href="#typology-pill" Tipología
+        li
+          a data-toggle="pill" href="#results-pill" Resultados
+      = render("acts/form")
+  .tile-container.adaptable
+    = button_tag(type: 'submit', form: "new_act", class: "btn btn-success right")
+      = fa_icon "check"
+      = " Añadir"

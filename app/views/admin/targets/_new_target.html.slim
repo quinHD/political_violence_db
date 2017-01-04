@@ -1,0 +1,11 @@
+=simple_form_for @target, url: admin_targets_path, remote: true do |f|
+  .input-group.input-group-sm
+    span.input-group-addon = "Nombre"
+    = f.input :name, placeholder: true, label: false, input_html: { class: "form-control" }
+    span.input-group-addon = "Descripción"
+    = f.input :description, placeholder: true, label: false, input_html: { class: "form-control" }
+    = f.input :parent, as: :hidden, input_html: { value: parent.try(:id)}
+    = hidden_field_tag :current_list, current_list
+    = hidden_field_tag :id_num, id_num
+    .span.input-group-btn
+      = f.submit("Añadir", class: "btn btn-default")

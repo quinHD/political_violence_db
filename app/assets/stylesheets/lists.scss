@@ -1,0 +1,74 @@
+.hierarchy_list h4, .hierarchy_list h5, .hierarchy_list h6 {
+  margin: 0px;
+}
+
+.hierarchy_list ul {
+  padding-left: 2rem;
+}
+
+.hierarchy_list li {
+  padding: 1rem 2rem;
+}
+
+.read-mode {
+  display: none;
+}
+
+.hierarchy_list.level-1 li{
+  background-color: #c5c5c5;
+}
+
+.hierarchy_list.level-1 li a{
+  color: #3a3a3a;
+}
+
+.hierarchy_list.level-2 li{
+  background-color: #dedede;
+}
+
+.hierarchy_list.level-2 li a{
+  color: #212121;
+}
+
+.hierarchy_list.level-3 li{
+  background-color: #f7f7f7;
+}
+
+.hierarchy_list.level-3 li a{
+  color: #080808;
+}
+
+.commands {
+  float: right;
+}
+
+.tile-list ul {
+  overflow: hidden;
+}
+
+.tile-list li {
+  margin: 1rem;
+  padding: 2rem 3rem;
+  border: solid 1px #888;
+  float: left;
+  width: 50rem;
+  font-size: 2rem;
+}
+
+.tile-list.full-click li {
+  margin: 1rem;
+  padding: 0;
+}
+
+.full-click li a {
+  padding: 2rem 3rem;
+  display: block;
+  color: #000;
+  text-decoration: none;
+}
+
+.full-click li a:hover {
+  background-color: lightblue;
+  color: #f7f7f7;
+}
+

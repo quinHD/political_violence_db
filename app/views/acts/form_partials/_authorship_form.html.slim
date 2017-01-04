@@ -1,0 +1,58 @@
+/= f.hidden_field :act_organizations, value: "[]"
+= f.input :organization, input_html: { class: "typeahead-organization", value: "" }, label: "Organización"
+= f.input :group, input_html: { class: "typeahead-group", value: "" }, label: "Grupo"
+= f.input :subgroup, input_html: { class: "typeahead-subgroup", value: "" }, label: "Subgrupo"
+= link_to "Add", "#", class: "btn btn-info btn-add-item", id: "add-act-organization-btn"
+table.organizations.table.table-striped
+  tr
+    th ="Organización"
+    th ="Grupo"
+    th ="Subgrupo"
+    th =""
+  - @act.act_organizations.each do |act_organization|
+    tr
+      td = act_organization.path.find_by_label(ActOrganization::ORGANIZATION).try(:name)
+      td = act_organization.path.find_by_label(ActOrganization::GROUP).try(:name)
+      td = act_organization.path.find_by_label(ActOrganization::SUBGROUP).try(:name)
+      td = link_to fa_icon("trash"), "#", class: "remove-act-organization-btn"
+      input value=act_organization.id type="hidden" name="act[act_organization_ids][]"
+
+= render("acts/form_partials/authorship_bloodhound.js.erb", collection: ActOrganization.organizations, klass: "typeahead-organization")
+= render("acts/form_partials/authorship_bloodhound.js.erb", collection: ActOrganization.organization_groups, klass: "typeahead-group")
+= render("acts/form_partials/authorship_bloodhound.js.erb", collection: ActOrganization.organization_subgroups, klass: "typeahead-subgroup")
+
+javascript:
+  $("#add-act-organization-btn").on("click", function(){
+    var $organization, $group, $subgroup, organizable_id ;
+
+    $organization = $("#act_organization");
+    $group = $("#act_group");
+    $subgroup = $("#act_subgroup");
+    organizable_id = $subgroup.attr("data-selected_id") || 
+                     $group.attr("data-selected_id") || 
+                     $organization.attr("data-selected_id");
+    $("table.organizations").append(
+      '<tr name=organization-row-' + organizable_id + ' data-row=' + organizable_id + '> ' +
+        '<td>' + $organization.val() + '</td>' +
+        '<td>' + $group.val() + '</td>' +
+        '<td>' + $subgroup.val() + '</td>' +
+        '<td> <a class="remove-act-organization-btn" href="#"><i class="fa fa-trash"></i></a> </td>' +
+        '<input value='+ organizable_id +' type="hidden" name="act[act_organization_ids][]" >' + 
+      "</tr> " 
+    );  
+    resetOrganizationInputs($organization, $group, $subgroup);
+  })
+  
+  $("table.organizations").on("click", ".remove-act-organization-btn", function(){
+    $(this).closest('tr').remove();
+  });
+
+  function resetOrganizationInputs ($organization, $group, $subgroup) {
+    $subgroup.removeAttr("data-selected_id");
+    $group.removeAttr("data-selected_id");
+    $organization.removeAttr("data-selected_id");
+ 
+    $('.typeahead-organization').typeahead('val','');
+    $('.typeahead-group').typeahead('val','');
+    $('.typeahead-subgroup').typeahead('val','');
+  }

@@ -1,0 +1,15 @@
+= act_breadcrumbs("Detalle")
+section.action-container
+  .tile-container
+    .section-header
+      h2 = "Acción en Detalle"
+      = link_to fa_icon("pencil-square-o", class: "rounded-icon"), edit_act_path(@act)
+
+    = render("acts/partials/identification")
+    = render("acts/partials/localization") if @act.place.present?
+    = render("acts/partials/authorship") if @act.act_organizations.present?
+    = render("acts/partials/typology") if @act.act_targets.present?
+    = render("acts/partials/results") if @act.result.present?
+    = render("acts/partials/sources") if @act.sources.present?
+
+= link_to "Volver", acts_path

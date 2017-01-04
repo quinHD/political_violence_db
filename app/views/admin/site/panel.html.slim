@@ -1,0 +1,17 @@
+.breadcrumbs
+  = link_to "Administración", admin_root_path
+section.action-container
+  .tile-container
+    .section-header
+      h2 = "Acciones"
+    section.tile-list.full-click
+      ul
+        li = link_to "Acciones", admin_acts_path
+        li = link_to "Tipos de Acción", admin_act_types_path
+        li = link_to "Objetivos", admin_targets_path
+        li = link_to "Organizaciones", admin_organizations_path
+    .section-header
+      h2 = "General"
+    section.tile-list.full-click
+      ul
+        li = link_to "Usuarios", admin_users_path

@@ -1,0 +1,14 @@
+= simple_form_for @act do |f|
+  .tab-content
+    #identification-pill.tab-pane.fade.in.active
+      = render("acts/form_partials/identification_form", f: f)
+    #localization-pill.tab-pane.fade
+      = render("acts/form_partials/localization_form", f: f)
+    #authorship-pill.tab-pane.fade
+      = render("acts/form_partials/authorship_form", f: f)
+    #typology-pill.tab-pane.fade
+      = render("acts/form_partials/typology_form", f: f)
+    #results-pill.tab-pane.fade
+      = render("acts/form_partials/results_form", f: f)
+  = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
+

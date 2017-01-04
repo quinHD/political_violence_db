@@ -1,0 +1,51 @@
+= act_breadcrumbs("Filtrar")
+section.action-container.strech-container
+  .tile-container
+    .section-header
+      h2 = "Filtrar acciones"
+    = search_form_for @q, html: { class: "" } do |f|
+      fieldset 
+        legend ="Identificación"
+        .filter-form-field.form-group
+          = f.label :name_cont
+          = f.search_field :name_cont, class: "form-control"
+        .filter-form-field.form-group
+          = f.label :act_types_name_cont
+          = f.search_field :act_types_name_cont, class: "form-control"
+        .filter-form-field.form-group
+          = f.label :start_date_gteq
+          = f.date_select :start_date_gteq, { start_year: 1960, end_year: 1980, order: [:day, :month, :year], prompt: true, with_css_classes: true }, { class: "form-control" }
+        .filter-form-field.form-group
+          = f.label :start_date_lteq
+          = f.date_select :start_date_lteq, { start_year: 1960, end_year: 1980, order: [:day, :month, :year], prompt: true, with_css_classes: true }, { class: "form-control" }
+      fieldset 
+        legend ="Autoría"
+        .filter-form-field.form-group
+          = f.label :action_organization
+          = select_tag "extended_search[act_organizations][]", options_from_collection_for_select(ActOrganization.organizations, :id, :name), prompt: "<select one>", class: "form-control"
+        .filter-form-field.form-group
+          = f.label :action_group
+          = select_tag "extended_search[act_organizations][]", options_from_collection_for_select(ActOrganization.organization_groups, :id, :name), prompt: "<select one>", class: "form-control"
+        .filter-form-field.form-group
+          = f.label :action_subgroup
+          = select_tag "extended_search[act_organizations][]", options_from_collection_for_select(ActOrganization.organization_subgroups, :id, :name), prompt: "<select one>", class: "form-control"
+      fieldset 
+        legend ="Objetivos"
+        .filter-form-field.form-group
+          = f.label :name_or_description_or_act_types_name_cont
+          = f.search_field :name_or_description_or_act_types_name_cont, class: "form-control"
+        .filter-form-field.form-group
+          = f.label :action_target
+          = select_tag "extended_search[act_targets][]", options_from_collection_for_select(ActTarget.targets, :id, :name), prompt: "<select one>", class: "form-control"
+        .filter-form-field.form-group
+          = f.label :action_target_category
+          = select_tag "extended_search[act_targets][]", options_from_collection_for_select(ActTarget.target_categories, :id, :name), prompt: "<select one>", class: "form-control"
+        .filter-form-field.form-group
+          = f.label :action_target_subcategory
+          = select_tag "extended_search[act_targets][]", options_from_collection_for_select(ActTarget.target_subcategories, :id, :name), prompt: "<select one>", class: "form-control"
+  .tile-container.adaptable
+    = button_tag(type: 'submit', form: "act_search", class: "btn btn-success right")
+      = fa_icon "search"
+      = " Buscar"
+
+

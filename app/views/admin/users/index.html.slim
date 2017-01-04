@@ -1,0 +1,29 @@
+.breadcrumbs
+  = link_to "Administración", admin_root_path
+  span.separator= fa_icon "circle"
+  = "Usuarios"
+  span.separator= fa_icon "circle"
+  = "Listado"
+section.action-container
+  .tile-container
+    .section-header
+      h2 = "Listado de usuarios"
+    table.table.table-striped[summary="Listado de todas las acciones"]
+      thead
+        tr
+          th #
+          th Nombre
+          th eMail
+          th Rol
+          th Último acceso
+          th Contador de accesos
+      tbody
+        - @users.each.with_index(1) do |user, index|
+          tr
+            td = index
+            td.justified = link_to(user.name, admin_user_path(user))
+            td = user.email
+            td = user.role
+            td = user.last_sign_in_at
+            td = user.sign_in_count
+

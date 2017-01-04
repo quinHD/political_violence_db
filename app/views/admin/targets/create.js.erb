@@ -1,0 +1,40 @@
+var item = '.<%= params[:current_list] %>'
+<% if @target.label == "target" %>
+  $(item + " li:last").before( $(
+    "<li>" +
+      "<h4>"+
+        "<a data-toggle='collapse' href='#collapse<%=params[:id_num].join%>'><%=@target.name%></a>"+
+        "<div class='commands read-mode' style='display: block;'>"+
+          "<a rel='nofollow' data-method='delete' href='/admin/targets/<%=@target.id%>'><i class='fa fa-trash'></i></a>"+
+        "</div>"+
+      "</h4>"+
+    "</li>") 
+  );
+<% end %>
+
+
+<% if @target.label == "target_category" %>
+  $(item + " li:last").before( $(
+    "<li>" +
+      "<h5>"+
+        "<a data-toggle='collapse' href='#collapse<%=params[:id_num].join%>'><%=@target.name%></a>"+
+        "<div class='commands read-mode' style='display: block;'>"+
+          "<a rel='nofollow' data-method='delete' href='/admin/targets/<%=@target.id%>'><i class='fa fa-trash'></i></a>"+
+        "</div>"+
+      "</h5>"+
+    "</li>") 
+  );
+<% end %>
+
+<% if @target.label == "target_subcategory" %>
+  $(item + " li:last").before( $(
+    "<li>" +
+      "<h6>"+
+        "<%=@target.name%>"+
+        "<div class='commands read-mode' style='display: block;'>"+
+          "<a rel='nofollow' data-method='delete' href='/admin/targets/<%=@target.id%>'><i class='fa fa-trash'></i></a>"+
+        "</div>"+
+      "</h6>"+
+    "</li>") 
+  );
+<% end %>

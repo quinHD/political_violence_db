@@ -1,0 +1,18 @@
+article.show.modifications
+  h3 = "Modificaciones"
+  ul
+    - @act.modifications.each do |modification|
+      li 
+        div
+          span 
+            b Columna: 
+            = "#{modification.column}"
+          span 
+            b Autor: 
+            = "#{modification.creator.name}"
+          p 
+            = fa_icon("angle-double-left")
+            = modification.from_value
+          p 
+            = fa_icon("angle-double-right")
+            = modification.to_value

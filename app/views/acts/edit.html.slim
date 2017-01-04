@@ -1,0 +1,25 @@
+.breadcrumbs
+  = link_to "Acciones", acts_path
+  span.separator= fa_icon "circle"
+  = "Editar"
+section.action-container.strech-container
+  .tile-container
+    .section-header
+      h2 = "Editar acción"
+    .action-form
+      ul.nav.nav-pills.nav-justified
+        li.active
+          a data-toggle="pill" href="#identification-pill" Identificación
+        li
+          a data-toggle="pill" href="#localization-pill" Localización
+        li
+          a data-toggle="pill" href="#authorship-pill" Autoría
+        li
+          a data-toggle="pill" href="#typology-pill" Tipología
+        li
+          a data-toggle="pill" href="#results-pill" Resultados
+      = render("acts/form")
+  .tile-container.adaptable
+    = button_tag(type: 'submit', form: "edit_act_#{@act.id}", class: "btn btn-success right")
+      = fa_icon "check"
+      = " Editar"
