@@ -74,12 +74,7 @@ namespace :deploy do
     end
   end
 
-  task :set_env do
-    execute :rake, "rake ts:index RAILS_ENV=production"
-  end
-
   before :starting,     :check_revision
-  before :starting,     :set_env
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
   after  :finishing,    :restart
