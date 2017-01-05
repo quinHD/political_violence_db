@@ -3,6 +3,6 @@ nav.side-bar
     li= link_to(fa_icon("list"), acts_path)
     li= link_to(fa_icon("plus"), new_act_path)
     li= link_to(fa_icon("filter"), filter_acts_path)
-    - if current_user.admin?
+    - if current_user&.admin?
       li= link_to(fa_icon("cog"), admin_root_path)
 
