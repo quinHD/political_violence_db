@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: "authentication/sessions" }
-  root to: 'site#welcome'
+  devise_scope :user do
+    authenticated :user do
+      root "dashboard#index", as: :authenticated_root
+    end
+    unauthenticated do
+      root to: 'site#welcome', as: :unauthenticated_root
+    end
+  end
 
   namespace :admin do
     get "/", to: "site#panel", as: "root"
@@ -18,9 +25,11 @@ Rails.application.routes.draw do
       end
     end
   end
+
   resources :acts do
     collection do 
       get "filter"
+      post "advance_search"
     end
     resources :act_organizations, only:[] do
       member do

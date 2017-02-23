@@ -1,6 +1,7 @@
 class ActTarget < ApplicationRecord
   has_ancestry
   has_and_belongs_to_many :acts
+  has_many :act_targets, source: :ancestry
 
   scope :targets, -> { where(label: TARGET) }
   scope :target_categories, -> { where(label: CATEGORY) }

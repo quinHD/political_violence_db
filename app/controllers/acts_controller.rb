@@ -17,7 +17,6 @@ class ActsController < BaseController
   end
 
   def create
-    binding.pry
     @act = Act.new(act_parameters)
     if @act.save
       flash.notice = "Acción creada con éxito"
@@ -52,6 +51,12 @@ class ActsController < BaseController
     @act.destroy
     flash.now[:notice] = "Acción eliminada"
     redirect_to acts_path
+  end
+
+  def advance_search
+    @q = Act.ransack(params[:q])
+    @acts = @q.result(distinct: true).includes(:act_types, :act_targets, :act_organizations).order(id: :asc)
+    render :index
   end
 
   def filter

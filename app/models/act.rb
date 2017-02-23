@@ -5,6 +5,7 @@ class Act < ApplicationRecord
   has_and_belongs_to_many :act_types
   has_and_belongs_to_many :act_organizations
   has_and_belongs_to_many :act_targets
+
   has_one :result
   accepts_nested_attributes_for :result
   has_one :place, dependent: :destroy
@@ -31,9 +32,9 @@ class Act < ApplicationRecord
   end
 
   def act_targets_extended
+    ActTarget.where(id: a.act_targets_extended.pluck(:id).uniq)
     act_targets.reduce([]) { |a, e| a | e.path }
   end
-
 
   def create_modification(current_u)
     val = previous_changes.reject {|k,v| k == "updated_at"}
@@ -46,6 +47,4 @@ class Act < ApplicationRecord
       )
     end
   end
-
-
 end

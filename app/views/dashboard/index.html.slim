@@ -1,0 +1,22 @@
+= act_breadcrumbs("Dashboard")
+section.action-container.strech-container
+  .tile-container
+    .section-header
+      h2 = "Filtrar acciones"
+    = search_form_for @q, url: advance_search_acts_url, html: { method: :post } do |f|
+      = f.condition_fields do |c|
+        = render 'condition_fields', f: c
+      fieldset 
+        .filter-form-field.form-group
+          = f.label :foret_eq
+          = f.search_field :foret_eq
+        .filter-form-field.form-group
+          = f.label :action_target_category
+          = select_tag "extended_search[act_targets][]", options_from_collection_for_select(ActTarget.target_categories, :id, :name), prompt: "<select one>", class: "form-control"
+        .filter-form-field.form-group
+          = f.label :action_target_subcategory
+          = select_tag "extended_search[act_targets][]", options_from_collection_for_select(ActTarget.target_subcategories, :id, :name), prompt: "<select one>", class: "form-control"
+  .tile-container.adaptable
+    = button_tag(type: 'submit', form: "act_search", class: "btn btn-success right")
+      = fa_icon "search"
+      = " Buscar"

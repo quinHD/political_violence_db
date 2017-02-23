@@ -2,14 +2,14 @@ header
   #burger-menu.menu-icon
     = fa_icon "bars"
   .logo-container
-    = link_to acts_path
+    = link_to authenticated_root_path
       = "LATIN"
       span.light-logo
         = "AMERICA"
       span.strong-logo
         = "DB"
   .user-logged
-    = link_to current_user.try(:name), "/"
+    = link_to(current_user.try(:name), "/")
     img.rounded-img src="https://media.licdn.com/mpr/mpr/shrink_100_100/p/3/005/0ae/3d4/0614152.jpg"
     = link_to fa_icon("sign-out"), destroy_user_session_path, method: :delete
 
