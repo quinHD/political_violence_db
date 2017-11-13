@@ -9,7 +9,7 @@ table.organizations.table.table-striped
     th ="Grupo"
     th ="Subgrupo"
     th =""
-  - @act.act_organizations.each do |act_organization|
+  - act.act_organizations.each do |act_organization|
     tr
       td = act_organization.path.find_by_label(ActOrganization::ORGANIZATION).try(:name)
       td = act_organization.path.find_by_label(ActOrganization::GROUP).try(:name)

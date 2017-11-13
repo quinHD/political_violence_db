@@ -10,7 +10,7 @@ table.targets.table.table-striped
     th ="Categoría"
     th ="Subcategoría"
     th =""
-  - @act.act_targets.each do |act_target|
+  - act.act_targets.each do |act_target|
     tr
       td = act_target.path.find_by_label(ActTarget::TARGET).try(:name)
       td = act_target.path.find_by_label(ActTarget::CATEGORY).try(:name)

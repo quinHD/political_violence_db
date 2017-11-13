@@ -6,18 +6,25 @@ class ActsController < BaseController
     @acts = @q.result(distinct: true).includes(:act_types, :act_targets, :act_organizations).order(id: :asc).extended_search(params[:extended_search])
   end
 
+  def index
+    interactor = Acts::IndexInteractor.new(self)
+    interactor.call
+    @presenter = interactor.build_presenter
+  end
+
   def show
-    @act = Act.find(params[:id])
+    interactor = Acts::ShowInteractor.new(self)
+    interactor.call
+    @presenter = interactor.build_presenter
   end
 
   def new
-    @act = Act.new
-    @act.build_place
-    @act.build_result
+    interactor = Acts::NewInteractor.new(self)
+    interactor.call
+    @presenter = interactor.build_presenter
   end
 
   def create
-    binding.pry
     @act = Act.new(act_parameters)
     if @act.save
       flash.notice = "Acción creada con éxito"

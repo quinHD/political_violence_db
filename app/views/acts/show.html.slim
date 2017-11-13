@@ -3,13 +3,13 @@ section.action-container
   .tile-container
     .section-header
       h2 = "Acción en Detalle"
-      = link_to fa_icon("pencil-square-o", class: "rounded-icon"), edit_act_path(@act)
+      = link_to fa_icon("pencil-square-o", class: "rounded-icon"), edit_act_path(@presenter.act)
 
-    = render("acts/partials/identification")
-    = render("acts/partials/localization") if @act.place.present?
-    = render("acts/partials/authorship") if @act.act_organizations.present?
-    = render("acts/partials/typology") if @act.act_targets.present?
-    = render("acts/partials/results") if @act.result.present?
-    = render("acts/partials/sources") if @act.sources.present?
+    = render("acts/partials/identification", act: @presenter.act)
+    = render("acts/partials/localization", act: @presenter.act) if @presenter.act.place.present?
+    = render("acts/partials/authorship", act: @presenter.act) if @presenter.act.act_organizations.present?
+    = render("acts/partials/typology", act: @presenter.act) if @presenter.act.act_targets.present?
+    = render("acts/partials/results", act: @presenter.act) if @presenter.act.result.present?
+    = render("acts/partials/sources", act: @presenter.act) if @presenter.act.sources.present?
 
 = link_to "Volver", acts_path

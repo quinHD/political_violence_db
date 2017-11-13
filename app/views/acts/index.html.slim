@@ -19,7 +19,7 @@ section#acts-list.action-container
           th.sort.col-md-2 data-sort="act-type" Tipo
           th.sort.col-md-2 data-sort="target" Objetivo
       tbody.list
-        - @acts.each_with_index do |act, i|
+        - @presenter.acts.each_with_index do |act, i|
           tr
             td.index = i+1
             td.justified = link_to(act.name, act_path(act), class: "name")
