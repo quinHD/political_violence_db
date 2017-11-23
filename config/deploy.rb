@@ -1,6 +1,11 @@
 # Change these
 server '193.144.33.76', roles: [:web, :app, :db], primary: true
 
+# config valid only for current version of Capistrano
+lock '3.10.0'
+set :rbenv_type, :user # or :system, depends on your rbenv setup
+set :rbenv_ruby, "2.3.1"
+
 set :repo_url,        'git@github.com:quinHD/political_violence_db.git'
 set :application,     'political_violence_db'
 set :user,            'joaquinr'
