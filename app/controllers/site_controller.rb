@@ -1,5 +1,5 @@
 class SiteController < BaseController
-  skip_before_filter :authenticate_user!
+  skip_before_action :authenticate_user!
   before_action :redirect_if_signed_in
 
   def welcome
