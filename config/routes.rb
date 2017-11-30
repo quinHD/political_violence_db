@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: "authentication/sessions" }
   devise_scope :user do
     authenticated :user do
-      root "dashboard#index", as: :authenticated_root
+      root "acts#index", as: :authenticated_root
     end
     unauthenticated do
       root to: 'site#welcome', as: :unauthenticated_root

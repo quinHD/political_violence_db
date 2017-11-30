@@ -7,9 +7,9 @@ section.action-container.strech-container
       = f.condition_fields do |c|
         = render 'condition_fields', f: c
       fieldset 
-        .filter-form-field.form-group
-          = f.label :foret_eq
-          = f.search_field :foret_eq
+        / .filter-form-field.form-group
+        /   = f.label :foret_eq
+        /   = f.search_field :foret_eq
         .filter-form-field.form-group
           = f.label :action_target_category
           = select_tag "extended_search[act_targets][]", options_from_collection_for_select(ActTarget.target_categories, :id, :name), prompt: "<select one>", class: "form-control"
